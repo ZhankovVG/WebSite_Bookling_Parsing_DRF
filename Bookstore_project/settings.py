@@ -78,12 +78,16 @@ WSGI_APPLICATION = 'Bookstore_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', 
-        'NAME': 'Books_PostgreSQL',                     
-        'USER': 'postgres',                     
-        'PASSWORD': '1080Zxcv',             
-        'HOST': 'localhost',                        
-        'PORT': '5432',                                 
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'MySQL_Books',
+        'USER': 'root',
+        'PASSWORD': '1080Zxc',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+        },
+        'CONN_MAX_AGE': 300,
     }
 }
 
