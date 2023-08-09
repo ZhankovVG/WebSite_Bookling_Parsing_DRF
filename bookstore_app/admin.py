@@ -28,7 +28,7 @@ class BooksAdmin(admin.ModelAdmin):
         'name', 
         'code', 
         'price',
-        'image', 
+        'get_image', 
         'description',
         'draft',
         )
