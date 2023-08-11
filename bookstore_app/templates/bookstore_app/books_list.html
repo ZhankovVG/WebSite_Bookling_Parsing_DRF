@@ -6,4 +6,32 @@ Bookling - книжковий інтернет магазин
 {% endblock %}
 
 {% block content %}
+<!-- Slider image start-->
+<div class="slider">
+    <div class="imeges">
+        <img class="slider__img" src="{% static 'bookstore_app/img/slider/1.png' %}" alt="image_advertising">
+        <img class="slider__img" src="{% static 'bookstore_app/img/slider/2.png' %}" alt="image_advertising">
+        <img class="slider__img" src="{% static 'bookstore_app/img/slider/3.png' %}" alt="image_advertising">
+        <img class="slider__img" src="{% static 'bookstore_app/img/slider/1.png' %}" alt="image_advertising">
+    </div>
+</div>
+<!-- Slider image end-->
+
+<main>
+    <div class="grid-books">
+        {% for el in books_list %}
+        <div class="books">
+            <a href="">
+                <img src="{{ el.image.url }}" alt="">
+                <p>{{ el.name }}</p>
+            </a>
+            {{ el.price }}
+        </div>    
+        {% endfor %}
+    </div>
+</main>
+
+<script>
+   
+</script>
 {% endblock %}
