@@ -176,3 +176,76 @@ header {
 }
 
 /* header, output category end */
+
+/* Slider image start */
+
+.slider {
+    width: 100%;
+    overflow: hidden;
+}
+
+.slider .imeges {
+    width: 100%;
+}
+
+.imeges img {
+    width: 100%;
+}
+
+/* Slider image end */
+
+/* Output of all products start */
+
+.grid-books {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.books {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.books a {
+    text-decoration: none;
+}
+
+.books img {
+    width: 90px;
+}
+
+.grid-books p:hover {
+    color: rgb(255, 5, 5);
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1200px) {
+    .grid-books {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .grid-books {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .grid-books {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .grid-books {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+/* Output of all products end */
