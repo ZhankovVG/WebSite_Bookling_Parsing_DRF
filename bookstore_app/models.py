@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Category(models.Model):
@@ -41,6 +42,9 @@ class Books(models.Model):
     class Meta:
         verbose_name = 'Книга'
         verbose_name_plural = 'Книги'
+
+    def get_absolute_url(self):
+        return reverse('detail_book', kwargs={'slug' : self.url})
 
 
 class RatingsStar(models.Model):
