@@ -21,17 +21,31 @@ Bookling - книжковий інтернет магазин
     <div class="grid-books">
         {% for el in books_list %}
         <div class="books">
-            <a href="">
-                <img src="{{ el.image.url }}" alt="">
+            <a href="{{ el.get_absolute_url }}">
+                <img src="{{ el.image.url }}" alt="photo-book">
                 <p>{{ el.name }}</p>
             </a>
             {{ el.price }}
-        </div>    
+        </div>
         {% endfor %}
     </div>
 </main>
 
 <script>
-   
+    var indexValue = 0;
+    function SlideShow() {
+        setTimeout(SlideShow, 3500)
+        var x;
+        const elements = document.querySelectorAll('.slider__img');
+        for (x = 0; x < elements.length; x++) {
+            elements[x].style.display = "none";
+        }
+        indexValue++;
+        if (indexValue > elements.length) {
+            indexValue = 1;
+        }
+        elements[indexValue - 1].style.display = "block";
+    }
+    SlideShow();
 </script>
 {% endblock %}

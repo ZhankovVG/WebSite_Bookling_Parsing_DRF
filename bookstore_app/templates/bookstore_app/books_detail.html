@@ -1,0 +1,24 @@
+{% extends 'bookstore_app/base.html' %}
+{% load static %}
+
+{% block title %}
+{{ books.name }}
+{% endblock %}
+
+{% block content %}
+<div class="book-content">
+    
+
+    <!-- Тут будет путь -->
+
+    <div class="book-image">
+        <img src="{{ books.image.url }}" alt="book-image">
+    </div>
+    <div class="book-description">
+        <p>Рейтинг: {{ books.code }}</p>
+        <h4>{{ books.name }}</h4>
+        <p>Автор: {{ books.author }}</p>
+        <p>Цена: {{ books.price }}</p>
+    </div>
+</div>
+{% endblock %}

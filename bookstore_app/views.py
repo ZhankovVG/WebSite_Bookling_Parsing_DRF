@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import *
 
 
@@ -11,5 +11,12 @@ class CategoryOutputView():
     
 
 class BooksListView(CategoryOutputView, ListView):
+    # Output Books
     model = Books
     queryset = Books.objects.filter(draft=False)
+
+
+class BooksDetailView(CategoryOutputView, DetailView):
+    # Full books description
+    model = Books
+    slug_field = 'url'
