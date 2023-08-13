@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
 from .models import *
+from django.db.models import Q
 
 
 class CategoryOutputView():
@@ -30,3 +31,11 @@ class CategoryView(CategoryOutputView, ListView):
     def get_queryset(self):
         category = get_object_or_404(Category, url=self.kwargs['cat_slug'])
         return Books.objects.filter(category=category)
+    
+
+class SearchView(CategoryOutputView, ListView):
+    def get_queryset(self):
+        query = self.request.GET.get('search')
+        return Books.objects.filter(
+            Q(name__icontains=query) | Q(code__contains=query)
+            )
