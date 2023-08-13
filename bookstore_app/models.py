@@ -13,6 +13,9 @@ class Category(models.Model):
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
 
+    def get_absolute_url(self):
+        return reverse('category', kwargs={'cat_slug' : self.url})
+
 
 class Author(models.Model):
     name = models.CharField(max_length=150)
