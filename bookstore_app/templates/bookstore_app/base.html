@@ -48,7 +48,7 @@
         </div>
         <ul class="categories">
             {% for cat in categories %}
-            <li><b><a href="">{{ cat.name }}</a></b></li>
+            <li><b><a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a></b></li>
             {% endfor %}
         </ul>
     </div>

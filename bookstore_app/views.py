@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
 from .models import *
 
@@ -20,3 +20,13 @@ class BooksDetailView(CategoryOutputView, DetailView):
     # Full books description
     model = Books
     slug_field = 'url'
+
+
+class CategoryView(CategoryOutputView, ListView):
+    # Book listing by category
+    model = Books
+    template_name = 'bookstore_app/books_list.html'
+
+    def get_queryset(self):
+        category = get_object_or_404(Category, url=self.kwargs['cat_slug'])
+        return Books.objects.filter(category=category)
