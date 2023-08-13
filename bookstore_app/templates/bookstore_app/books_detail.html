@@ -15,10 +15,22 @@
         <img src="{{ books.image.url }}" alt="book-image">
     </div>
     <div class="book-description">
-        <p>Рейтинг: {{ books.code }}</p>
-        <h4>{{ books.name }}</h4>
-        <p>Автор: {{ books.author }}</p>
-        <p>Цена: {{ books.price }}</p>
+        <p>РISBN: {{ books.code }}</p><br>
+        <p>{{ books.name }}</p><br>
+            {% for author in books.auhtor.all %}
+            <p>Автор: {{ author.name }}</p><br>
+            {% endfor %}
+        <p>Ціна: {{ books.price }} грн.</p><br>
+
+        <form action="#" method="post">
+            {% csrf_token %}
+            <button type="submit">Додати до корзини</button>
+        </form>
     </div>
+</div>
+
+<div>
+    <h3>Опис</h3>
+   {{ books.description | linebreaks  }}
 </div>
 {% endblock %}

@@ -252,6 +252,8 @@ a {
 /* Output of all products end */
 
 
+/* full description books start */
+
 .book-content {
     display: flex;
     align-items: flex-start;
@@ -265,13 +267,14 @@ a {
 }
 
 .book-image img {
-    max-width: 100%;
+    max-width: 250px;
     height: auto;
 }
 
 .book-description {
     flex: 1;
     margin-left: 100px;
+    margin-top: 30px;
 }
 
 .book-description h1 {
@@ -281,3 +284,14 @@ a {
 .book-description p {
     margin: 5px 0;
 }
+
+.book-description button {
+    background-color: #2cff25;
+    cursor: pointer;
+}
+
+.book-description p {
+    font-size: 13px;
+}
+
+/* full description books end */
