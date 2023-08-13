@@ -23,8 +23,8 @@
         </div>
 
         <div class="header-center">
-            <form class="search-form" action="" method="get">
-                <input type="text" name="query" placeholder="Поиск">
+            <form class="search-form" action="{% url 'search' %}" method="get">
+                <input type="search" name="search" placeholder="Поиск">
                 <button type="submit">Знайти</button>
             </form>
         </div>
