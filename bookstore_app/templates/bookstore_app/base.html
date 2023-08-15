@@ -31,8 +31,14 @@
 
         <div class="header-right">
             <span class="search-map">Книгарні Bookling</span>
-            <a href="#" class="logout-link">Увійти</a>
 
+            {% if user.is_authenticated %}
+            <span>{{ user.username }}</span>
+            <a href="{% url 'account_logout' %}" class="logout-link">Вихід</a>
+            {% else %}
+            <a href="{% url 'account_login' %}" class="logout-link">Вхід</a>
+            <a href="{% url 'account_signup' %}" class="registration-link">Реєстрація</a>
+            {% endif %}
             <a href="#" class="cart"><i class="bi bi-cart3"></i>
                 Кошик
             </a>

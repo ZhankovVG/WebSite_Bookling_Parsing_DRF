@@ -102,14 +102,20 @@ header {
 .cart {
     color: #000000;
     text-decoration: none;
-    margin-left: 15px;
 }
 
 .logout-link {
     color: rgb(0, 0, 0);
     text-decoration: none;
+    margin-left: 7px;
 }
 
+.registration-link {
+    margin-right: 7px;
+    padding-left: 7px;
+}
+
+.registration-link:hover,
 .logout-link:hover,
 .cart:hover {
     color: #ff0000;
