@@ -12,3 +12,4 @@ In this project I am repeating and copying the Bookling bookstore website. I wil
 3. Added a little bit of JS
 4. Output of books and categories
 5. Search the site : by name and code
+6. Adding registration and login with google"
