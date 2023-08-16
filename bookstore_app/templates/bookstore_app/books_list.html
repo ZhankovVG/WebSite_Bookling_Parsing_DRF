@@ -29,9 +29,27 @@ Bookling - книжковий інтернет магазин
         </div>
         {% endfor %}
     </div>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; перша</a>
+            <a href="?page={{ page_obj.previous_page_number }}">попередня</a>
+            {% endif %}
+
+            <span class="current">
+                Страница {{ page_obj.number }} з {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">наступна</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">остання &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+
 </main>
 
 <script>
-
 </script>
 {% endblock %}

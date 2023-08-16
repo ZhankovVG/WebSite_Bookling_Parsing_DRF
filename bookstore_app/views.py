@@ -15,6 +15,7 @@ class BooksListView(CategoryOutputView, ListView):
     # Output Books
     model = Books
     queryset = Books.objects.filter(draft=False)
+    paginate_by = 4
 
 
 class BooksDetailView(CategoryOutputView, DetailView):
