@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, DetailView
+from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic import ListView, DetailView, View
 from .models import *
 from django.db.models import Q
+from .forms import CommentsForm
 
 
 class CategoryOutputView():
@@ -35,8 +36,21 @@ class CategoryView(CategoryOutputView, ListView):
     
 
 class SearchView(CategoryOutputView, ListView):
+    # Search books
     def get_queryset(self):
         query = self.request.GET.get('search')
         return Books.objects.filter(
             Q(name__icontains=query) | Q(code__contains=query)
             )
+    
+
+class CommentsView(View):
+    # Comments
+    def post(self, request, pk):
+        form = CommentsForm(request.POST)
+        book = Books.objects.get(id=pk)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.book = book
+            form.save()
+        return redirect(book.get_absolute_url())

@@ -7,7 +7,7 @@
 
 {% block content %}
 <div class="book-content">
-    
+
 
     <!-- Тут будет путь -->
 
@@ -17,9 +17,9 @@
     <div class="book-description">
         <p>РISBN: {{ books.code }}</p><br>
         <p>{{ books.name }}</p><br>
-            {% for author in books.auhtor.all %}
-            <p>Автор: {{ author.name }}</p><br>
-            {% endfor %}
+        {% for author in books.auhtor.all %}
+        <p>Автор: {{ author.name }}</p><br>
+        {% endfor %}
         <p>Ціна: {{ books.price }} грн.</p><br>
 
         <form action="#" method="post">
@@ -31,6 +31,39 @@
 
 <div>
     <h3>Опис</h3>
-   {{ books.description | linebreaks  }}
+    {{ books.description | linebreaks }}
+</div>
+
+<div class="comments">
+    <form action="{% url 'comments' books.id %}" method="post">
+        <h3>Ваш відгук</h3>
+        {% csrf_token %}
+        <div class="input-txt">
+            <label for="username"></label>
+            <input type="text" name="name" placeholder="Имя *">
+        </div>
+        <div class="input-email">
+            <label for="useremail"></label>
+            <input type="email" name="email" placeholder="Email *">
+            <div class="text-user">
+                <label for="comments"></label>
+                <textarea name="text" id="" cols="23" rows="" placeholder="Ваш коментар *"></textarea>
+            </div>
+        </div>
+        <div class="button">
+            <button type="submit" class="button">Відправити</button>
+        </div>
+    </form>
+
+    <div class="comments-user">
+        <h3>Коментарі:</h3>
+        {% for comment in books.reviews_set.all %}
+        <p><b>Ім'я :</b> {{ comment.name }}</p>
+        <p><b>Коментар :</b> {{ comment.text }}</p>
+        <hr>
+        {% endfor %}
+    
+    </div>
+
 </div>
 {% endblock %}

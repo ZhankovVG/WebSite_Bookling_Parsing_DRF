@@ -301,3 +301,35 @@ a {
 }
 
 /* full description books end */
+
+
+/* pagination start */
+
+.pagination {
+    margin-top: 70px;
+    margin-bottom: 50px;
+}
+
+/* pagination end */
+
+
+/* comments start */
+
+.comments {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 100px;
+}
+
+.comments-user {
+    margin-top: -175px;
+    float: right;
+    margin-left: 25em;
+}
+
+.input-email,
+.text-user {
+    margin-top: 5px;
+}
+
+/* comments end */
