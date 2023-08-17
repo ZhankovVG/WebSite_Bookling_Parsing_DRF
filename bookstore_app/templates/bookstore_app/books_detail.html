@@ -15,6 +15,23 @@
         <img src="{{ books.image.url }}" alt="book-image">
     </div>
     <div class="book-description">
+
+        <form action="{% url 'add-rating' %}" method="post" name="rating">
+
+            {% csrf_token %}
+            <input type="hidden" value="{{ books.id }}" name="book">
+            <span class="rating">
+                {% for k, v in star_form.fields.star.choices %}
+                {% if request.POST.star %}
+                <p>Вы установили рейтинг: {{ request.POST.star }} из {{ star_form.fields.star.choices|length }}
+                    возможных.</p>
+                {% endif %}
+                <input id="rating{{ v }}" type="radio" name="star" value="{{ k }}">
+                <label for="rating{{ v }}"></label>
+                {% endfor %}
+            </span>
+        </form>
+
         <p>РISBN: {{ books.code }}</p><br>
         <p>{{ books.name }}</p><br>
         {% for author in books.auhtor.all %}
@@ -62,8 +79,38 @@
         <p><b>Коментар :</b> {{ comment.text }}</p>
         <hr>
         {% endfor %}
-    
     </div>
 
 </div>
+
+<script>
+    const savedRating = localStorage.getItem('savedRating');
+    if (savedRating) {
+        const ratingInputs = document.querySelectorAll('input[name="star"]');
+        ratingInputs.forEach(input => {
+            if (input.value === savedRating) {
+                input.checked = true;
+            }
+        });
+    }
+
+    const rating = document.querySelector('form[name=rating]');
+
+    rating.addEventListener("change", function (e) {
+        let data = new FormData(this);
+        fetch(`${this.action}`, {
+            method: 'POST',
+            body: data
+        })
+            .then(response => {
+                if (response.ok) {
+                    const selectedRating = data.get('star');
+                    localStorage.setItem('savedRating', selectedRating);
+                } else {
+                    alert("Произошла ошибка при сохранении рейтинга");
+                }
+            })
+            .catch(error => alert("Ошибка"))
+    });
+</script>
 {% endblock %}
