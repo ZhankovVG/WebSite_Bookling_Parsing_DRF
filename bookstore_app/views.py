@@ -3,6 +3,7 @@ from django.views.generic import ListView, DetailView, View
 from .models import *
 from django.db.models import Q
 from .forms import *
+from cart.forms import CartAddBookForm
 
 
 class Mixin():
@@ -10,6 +11,7 @@ class Mixin():
         context = super().get_context_data(*args, **kwargs) 
         context["categories"] = Category.objects.all()
         context['star_form'] = RatingForm()
+        context['cart_book_form'] = CartAddBookForm()
         return context
     
 
