@@ -13,3 +13,5 @@ In this project I am repeating and copying the Bookling bookstore website. I wil
 4. Output of books and categories
 5. Search the site : by name and code
 6. Adding registration and login with google"
+7. Option to add a comment
+8. Rating to books
