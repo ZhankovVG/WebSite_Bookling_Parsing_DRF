@@ -39,7 +39,8 @@
             <a href="{% url 'account_login' %}" class="logout-link">Вхід</a>
             <a href="{% url 'account_signup' %}" class="registration-link">Реєстрація</a>
             {% endif %}
-            <a href="#" class="cart"><i class="bi bi-cart3"></i>
+            
+            <a href="{% url 'cart:cart_detail' %}" class="cart"><i class="bi bi-cart3"></i>
                 Кошик
             </a>
         </div>

@@ -260,6 +260,46 @@ a {
 
 /* full description books start */
 
+.block-detail-name {
+    width: 97%;
+    height: 70px;
+    background-color: #f8f8e5;
+    margin-top: -30px;
+    margin-left: 20px;
+}
+
+.detail-name h2 {
+    margin-left: 20px;
+}
+
+.list-info {
+    width: 70%;
+    height: 30px;
+    list-style: none;
+    margin-left: -15px;
+    margin-top: -15px;
+}
+
+.list-info li {
+    display: inline;
+    margin-right: 10px;
+    font-size: 10px;
+}
+
+.list-info li:last-child {
+    margin-right: 0;
+}
+
+.list-info a {
+    text-decoration: none;
+    font-size: 10px;
+}
+
+.list-info li:hover,
+.list-info a:hover {
+    color: #ff0000;
+}
+
 .book-content {
     display: flex;
     align-items: flex-start;
@@ -341,7 +381,7 @@ a {
     overflow: hidden;
     vertical-align: bottom;
     display: inline-block;
-    width: 80px; 
+    width: 80px;
     height: 30px;
 }
 
@@ -355,17 +395,17 @@ a {
     display: block;
     float: right;
     background: url('../img/star-off.png');
-    background-size: 16px 16px; 
+    background-size: 16px 16px;
     width: 16px;
-    height: 16px; 
+    height: 16px;
 }
 
 .rating>label:before {
     display: block;
     opacity: 0;
     content: '';
-    width: 16px; 
-    height: 16px; 
+    width: 16px;
+    height: 16px;
     background: url('../img/star-on.png');
     background-size: 16px 16px;
     transition: opacity 0.2s linear;
@@ -378,3 +418,59 @@ a {
 }
 
 /* Checkbox stars end*/
+
+
+/* cart start */
+
+.cart-buy {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.cart-buy th,
+.cart-buy td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.cart-buy th {
+    background-color: #f2f2f2;
+}
+
+.cart-buy img {
+    max-width: 40px;
+    display: block;
+    margin: 0 auto;
+}
+
+.cart-buy .num {
+    font-weight: bold;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.button.light {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.button.light:hover,
+.button:hover {
+    color: #ff0000;
+}
+
+/* cart end */
