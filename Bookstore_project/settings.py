@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     'bookstore_app',
     'cart',
+    'discount',
 
     'django.contrib.sites',
     'allauth',

@@ -3,6 +3,7 @@ from django.views.decorators.http import require_POST
 from bookstore_app.models import Books
 from .cart import Cart
 from .forms import CartAddBookForm
+from discount.forms import *
 
 
 @require_POST
@@ -31,6 +32,11 @@ def cart_detail(request):
     # cart contents
     cart = Cart(request)
     for item in cart:
-        item['update_quantity_form'] = CartAddBookForm(initial={'quantity': item['quantity'],
-                                                                   'update': True})
-    return render(request, 'cart/detail.html', {'cart': cart})
+        item['update_quantity_form'] = CartAddBookForm(initial={'quantity': item['quantity'], 'update': True})
+    
+    coupon_apply_form = CouponApplyForm()
+
+    return render(request,
+                  'cart/detail.html',
+                  {'cart': cart,
+                   'coupon_apply_form': coupon_apply_form})

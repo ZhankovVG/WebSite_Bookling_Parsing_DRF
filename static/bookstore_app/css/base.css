@@ -449,7 +449,7 @@ a {
     font-weight: bold;
 }
 
-.button {
+.button-order {
     display: inline-block;
     padding: 10px 20px;
     background-color: #007bff;
@@ -459,7 +459,7 @@ a {
     margin-right: 10px;
 }
 
-.button.light {
+.button-order.light {
     background-color: #f0f0f0;
     color: #333;
 }
@@ -468,8 +468,8 @@ a {
     text-align: right;
 }
 
-.button.light:hover,
-.button:hover {
+.button-order.light:hover,
+.button-order:hover {
     color: #ff0000;
 }
 

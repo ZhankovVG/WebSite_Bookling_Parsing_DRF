@@ -10,8 +10,9 @@ from django.contrib.staticfiles.views import serve
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('cart', include('cart.urls', namespace='cart')),
-    path('', include('bookstore_app.urls')),
     path('accounts/', include('allauth.urls')),
+    path('discount/', include('discount.urls', namespace='discount')),
+    path('', include('bookstore_app.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
