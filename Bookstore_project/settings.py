@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'bookstore_app',
     'cart',
     'discount',
+    'orders',
 
     'django.contrib.sites',
     'allauth',
@@ -180,6 +181,19 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
+
+
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+REDIS_DB = 1
+
+# smtp
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'python.developer.v@gmail.com'
+EMAIL_HOST_PASSWORD = 'password'
+EMAIL_PORT = 587
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

@@ -12,6 +12,7 @@ urlpatterns = [
     path('cart', include('cart.urls', namespace='cart')),
     path('accounts/', include('allauth.urls')),
     path('discount/', include('discount.urls', namespace='discount')),
+    path('orders/', include('orders.urls', namespace='orders')),
     path('', include('bookstore_app.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

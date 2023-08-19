@@ -2,11 +2,11 @@
 {% load static %}
 
 {% block title %}
-Корзина покупок
+Кошик покупок
 {% endblock %}
 
 {% block content %}
-<h1>Корзина покупок</h1>
+<h1>Кошик покупок</h1>
 <table class="cart-buy">
     <thead>
         <tr>
@@ -53,11 +53,6 @@
         </tr>
 
         {% if cart.coupon %}
-        <tr class="subtotal">
-            <td>Сумма замовлення</td>
-            <td colspan="4"></td>
-            <td class="num">{{ cart.get_total_price|floatformat:"2" }} грн.</td>
-        </tr>
         <tr>
             <td>
                 Ваучер №{{ cart.coupon.code }} ,
@@ -79,6 +74,7 @@
     </tbody>
 </table>
 
+
 <p>Використати ваучер:</p>
 <h6 style="color:red;">Зверніть увагу! Використати ваучер можна лише один раз</h6>
 {% if messages %}
@@ -90,6 +86,8 @@
     {% endfor %}
 </ul>
 {% endif %}
+
+
 <form action="{% url 'discount:apply' %}" method="post">
     {{ coupon_apply_form }}
     <button class="button" type="submit">Застосувати</button>
@@ -97,11 +95,8 @@
 </form>
 
 
-
-
-
 <p class="text-right">
     <a href="{% url 'main' %}" class="button-order light">В магазин</a>
-    <a href="" class="button-order">Оформити замовлення</a>
+    <a href="{% url 'orders:order_create' %}" class="button-order">Оформити замовлення</a>
 </p>
 {% endblock %}
