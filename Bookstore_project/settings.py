@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'cart',
     'discount',
     'orders',
+    'callback',
 
     'django.contrib.sites',
     'allauth',
@@ -89,16 +90,8 @@ WSGI_APPLICATION = 'Bookstore_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'MySQL_Books',
-        'USER': 'root',
-        'PASSWORD': '1080Zxc',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-        'OPTIONS': {
-            'charset': 'utf8mb4',
-        },
-        'CONN_MAX_AGE': 300,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
