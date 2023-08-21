@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ua">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="shortcut icon" href="{% static 'bookstore_app/img/img_title.png' %}">
+    <link rel="stylesheet" href="{% static 'bookstore_app/css/base.css' %}">
+    <script src="{% static 'bookstore_app/js/slider.js' %}"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+
+    <header>
+
+        <div class="header-left">
+            <span><i class="bi bi-telephone-fill"></i> <b>+38 (098) 336-09-07</b></span>
+            <button class="call-button">Замовити дзвінок</button>
+        </div>
+
+        <div class="header-center">
+            <form class="search-form" action="{% url 'search' %}" method="get">
+                <input type="search" name="search" placeholder="Поиск">
+                <button type="submit">Знайти</button>
+            </form>
+        </div>
+
+        <div class="header-right">
+            <span class="search-map">Книгарні Bookling</span>
+
+            {% if user.is_authenticated %}
+            <span>{{ user.username }}</span>
+            <a href="{% url 'account_logout' %}" class="logout-link">Вихід</a>
+            {% else %}
+            <a href="{% url 'account_login' %}" class="logout-link">Вхід</a>
+            <a href="{% url 'account_signup' %}" class="registration-link">Реєстрація</a>
+            {% endif %}
+            
+            <a href="{% url 'cart:cart_detail' %}" class="cart"><i class="bi bi-cart3"></i>
+                Кошик
+            </a>
+        </div>
+
+    </header>
+
+    <div class="block_category">
+        <div class="logo-company">
+            <a href="{% url 'main' %}">
+                <img src="{% static 'bookstore_app/img/original_2_01.png' %}" alt="logo_kompany">
+            </a>
+        </div>
+        <ul class="categories">
+            {% for cat in categories %}
+            <li><b><a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a></b></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+    <footer>
+
+    </footer>
+
+</body>
+
+</html>

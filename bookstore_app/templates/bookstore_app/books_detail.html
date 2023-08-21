@@ -1,0 +1,124 @@
+{% extends 'bookstore_app/base.html' %}
+{% load static %}
+
+{% block title %}
+{{ books.name }}
+{% endblock %}
+
+{% block content %}
+<div class="block-detail-name">
+    <div class="detail-name">
+        <h2>{{ books.name }}</h2>
+        <ul class="list-info">
+            <li><a href="{% url 'main' %}">Головна</a></li>- 
+            <li><a href="{% url 'category' books.category.url %}">{{ books.category.name }}</a></li>- 
+            <li>{{ books.name }}</li>
+        </ul>
+    </div>
+</div>
+<div class="book-content">
+
+    <div class="book-image">
+        <img src="{{ books.image.url }}" alt="book-image">
+    </div>
+    <div class="book-description">
+
+        <form action="{% url 'add-rating' %}" method="post" name="rating">
+
+            {% csrf_token %}
+            <input type="hidden" value="{{ books.id }}" name="book">
+            <span class="rating">
+                {% for k, v in star_form.fields.star.choices %}
+                {% if request.POST.star %}
+                <p>Вы установили рейтинг: {{ request.POST.star }} из {{ star_form.fields.star.choices|length }}
+                    возможных.</p>
+                {% endif %}
+                <input id="rating{{ v }}" type="radio" name="star" value="{{ k }}">
+                <label for="rating{{ v }}"></label>
+                {% endfor %}
+            </span>
+        </form>
+
+        <p>РISBN: {{ books.code }}</p><br>
+        <p>{{ books.name }}</p><br>
+        {% for author in books.auhtor.all %}
+        <p>Автор: {{ author.name }}</p><br>
+        {% endfor %}
+        <p>Ціна: {{ books.price }} грн.</p><br>
+
+        <form action="{% url 'cart:cart_add' books.id %}" method="post">
+            {% csrf_token %}
+            {{ cart_book_form }}
+            <button type="submit">Додати до корзини</button>
+        </form>
+    </div>
+</div>
+
+<div>
+    <h3>Опис</h3>
+    {{ books.description | linebreaks }}
+</div>
+
+<div class="comments">
+    <form action="{% url 'comments' books.id %}" method="post">
+        <h3>Ваш відгук</h3>
+        {% csrf_token %}
+        <div class="input-txt">
+            <label for="username"></label>
+            <input type="text" name="name" placeholder="Имя *">
+        </div>
+        <div class="input-email">
+            <label for="useremail"></label>
+            <input type="email" name="email" placeholder="Email *">
+            <div class="text-user">
+                <label for="comments"></label>
+                <textarea name="text" id="" cols="23" rows="" placeholder="Ваш коментар *"></textarea>
+            </div>
+        </div>
+        <div class="button">
+            <button type="submit" class="button">Відправити</button>
+        </div>
+    </form>
+
+    <div class="comments-user">
+        <h3>Коментарі:</h3>
+        {% for comment in books.reviews_set.all %}
+        <p><b>Ім'я :</b> {{ comment.name }}</p>
+        <p><b>Коментар :</b> {{ comment.text }}</p>
+        <hr>
+        {% endfor %}
+    </div>
+
+</div>
+
+<script>
+    const savedRating = localStorage.getItem('savedRating');
+    if (savedRating) {
+        const ratingInputs = document.querySelectorAll('input[name="star"]');
+        ratingInputs.forEach(input => {
+            if (input.value === savedRating) {
+                input.checked = true;
+            }
+        });
+    }
+
+    const rating = document.querySelector('form[name=rating]');
+
+    rating.addEventListener("change", function (e) {
+        let data = new FormData(this);
+        fetch(`${this.action}`, {
+            method: 'POST',
+            body: data
+        })
+            .then(response => {
+                if (response.ok) {
+                    const selectedRating = data.get('star');
+                    localStorage.setItem('savedRating', selectedRating);
+                } else {
+                    alert("Произошла ошибка при сохранении рейтинга");
+                }
+            })
+            .catch(error => alert("Ошибка"))
+    });
+</script>
+{% endblock %}
