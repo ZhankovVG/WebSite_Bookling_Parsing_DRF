@@ -13,6 +13,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('discount/', include('discount.urls', namespace='discount')),
     path('orders/', include('orders.urls', namespace='orders')),
+    path('payment/', include('payment.urls', namespace='payment')),
     path('callback/', include('callback.urls', namespace='callback')),
     path('', include('bookstore_app.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

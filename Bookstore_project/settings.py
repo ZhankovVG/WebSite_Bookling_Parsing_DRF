@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 from decouple import config
+from braintree import Configuration, Environment
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     'cart',
     'discount',
     'orders',
+    'payment',
     'callback',
 
     'django.contrib.sites',
@@ -177,8 +179,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
 REDIS_HOST = 'localhost'
-REDIS_PORT = 6379
+REDIS_PORT = 6380
 REDIS_DB = 1
+
+CELERY_BROKER_URL = 'redis://localhost:6380/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6380/0'
 
 # smtp
 EMAIL_USE_TLS = True
@@ -193,3 +198,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SITE_ID = 1
 
 CART_SESSION_ID = 'cart'
+
+
+BRAINTREE_MERCHANT_ID = config('BRAINTREE_MERCHANT_ID', default='')
+BRAINTREE_PUBLIC_KEY = config('BRAINTREE_PUBLIC_KEY', default='')
+BRAINTREE_PRIVATE_KEY = config('BRAINTREE_PRIVATE_KEY', default='')
+
+
+Configuration.configure(
+    Environment.Sandbox,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PUBLIC_KEY,
+    BRAINTREE_PRIVATE_KEY
+)
