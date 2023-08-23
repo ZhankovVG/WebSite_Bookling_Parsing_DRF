@@ -129,6 +129,16 @@ USE_I18N = True
 USE_TZ = True
 
 
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_COOKIE_AGE = 172800
+
+CRONJOBS = [
+    ('0 2 * * *', 'bookstore_app.clean_session.clean_session')
+]
+
+CART_SESSION_ID = 'cart'
+
+
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
@@ -182,6 +192,7 @@ REDIS_HOST = 'localhost'
 REDIS_PORT = 6380
 REDIS_DB = 1
 
+
 CELERY_BROKER_URL = 'redis://localhost:6380/0'
 CELERY_RESULT_BACKEND = 'redis://localhost:6380/0'
 
@@ -196,8 +207,6 @@ EMAIL_PORT = 587
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SITE_ID = 1
-
-CART_SESSION_ID = 'cart'
 
 
 BRAINTREE_MERCHANT_ID = config('BRAINTREE_MERCHANT_ID', default='')
