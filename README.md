@@ -20,3 +20,4 @@ In this project I am repeating and copying the Bookling bookstore website. I wil
 11. Orders
 12. Payment books
 13. Order a call back(I did it through the database.)
+14. Session setup
