@@ -10,8 +10,8 @@
     <div class="detail-name">
         <h2>{{ books.name }}</h2>
         <ul class="list-info">
-            <li><a href="{% url 'main' %}">Головна</a></li>- 
-            <li><a href="{% url 'category' books.category.url %}">{{ books.category.name }}</a></li>- 
+            <li><a href="{% url 'main' %}">Головна</a></li>-
+            <li><a href="{% url 'category' books.category.url %}">{{ books.category.name }}</a></li>-
             <li>{{ books.name }}</li>
         </ul>
     </div>
@@ -49,7 +49,7 @@
         <form action="{% url 'cart:cart_add' books.id %}" method="post">
             {% csrf_token %}
             {{ cart_book_form }}
-            <button type="submit">Додати до корзини</button>
+            <button class="add_cart" type="submit">Додати до корзини</button>
         </form>
     </div>
 </div>
@@ -65,18 +65,18 @@
         {% csrf_token %}
         <div class="input-txt">
             <label for="username"></label>
-            <input type="text" name="name" placeholder="Имя *">
+            <input class="input-name" type="text" name="name" placeholder="Имя *">
         </div>
         <div class="input-email">
             <label for="useremail"></label>
-            <input type="email" name="email" placeholder="Email *">
+            <input class="input-email-user" type="email" name="email" placeholder="Email *">
             <div class="text-user">
                 <label for="comments"></label>
-                <textarea name="text" id="" cols="23" rows="" placeholder="Ваш коментар *"></textarea>
+                <textarea class="input-comment" name="text" id="" cols="23" rows="" placeholder="Ваш коментар *"></textarea>
             </div>
         </div>
         <div class="button">
-            <button type="submit" class="button">Відправити</button>
+            <button type="submit" class="button-user">Відправити</button>
         </div>
     </form>
 
