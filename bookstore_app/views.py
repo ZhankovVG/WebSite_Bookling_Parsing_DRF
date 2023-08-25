@@ -5,6 +5,10 @@ from django.db.models import Q
 from .forms import *
 from cart.forms import CartAddBookForm
 
+from rest_framework.response import Response
+from rest_framework import generics
+from .serializer import *
+
 
 class Mixin():
     def get_context_data(self,*args, **kwargs):
@@ -80,3 +84,9 @@ class AddStarsRating(View):
             return HttpResponse(status=201)
         else:
             return HttpResponse(status=400)
+        
+        
+class BookApiView(generics.ListAPIView):
+    serializer_class = BookListSerializer
+    queryset = Books.objects.filter(draft=False)
+    

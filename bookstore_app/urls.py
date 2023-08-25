@@ -9,4 +9,6 @@ urlpatterns = [
     path('search/', views.SearchView.as_view(), name='search'),
     path('comments/<int:pk>/', views.CommentsView.as_view(), name='comments'),
     path('add-rating/', views.AddStarsRating.as_view(), name='add-rating'),
+    # added URLs for DRF api
+    path('api/v1/book/', views.BookApiView.as_view()),
 ]
