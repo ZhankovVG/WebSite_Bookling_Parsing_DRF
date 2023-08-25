@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google', 
+    
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
