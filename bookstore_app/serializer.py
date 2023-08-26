@@ -3,6 +3,7 @@ from .models import *
 
 
 class BookListSerializer(serializers.ModelSerializer):
+    # List book
     class Meta:
         model = Books
         fields = (
@@ -13,3 +14,10 @@ class BookListSerializer(serializers.ModelSerializer):
             'auhtor',
             'category',
       )
+        
+        
+class BookDetailSerilizer(serializers.ModelSerializer):
+    # full descriptions book
+    class Meta:
+        model = Books
+        exclude = ('draft', )

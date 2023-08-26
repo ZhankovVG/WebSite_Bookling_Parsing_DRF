@@ -86,7 +86,17 @@ class AddStarsRating(View):
             return HttpResponse(status=400)
         
         
-class BookApiView(generics.ListAPIView):
-    serializer_class = BookListSerializer
+class MixinApi():
+    # class mixin
+    serializers_class = None
     queryset = Books.objects.filter(draft=False)
+               
+        
+class BookApiView(MixinApi, generics.ListAPIView):
+    # Book list output
+    serializer_class = BookListSerializer
     
+    
+class BookDetailApiView(MixinApi, generics.RetrieveAPIView):
+    # full description book    
+    serializer_class = BookDetailSerilizer
