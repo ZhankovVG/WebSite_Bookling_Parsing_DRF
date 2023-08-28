@@ -16,8 +16,24 @@ class BookListSerializer(serializers.ModelSerializer):
       )
         
         
+class CommetCreateSerializer(serializers.ModelSerializer):
+    # adding a comment
+    class Meta:
+        model = Reviews
+        fields = '__all__'
+        
+        
+class CommentSerilizer(serializers.ModelSerializer):
+    # output comment
+    class Meta:
+        model = Reviews
+        fields = ('name', 'text', 'parent')
+        
+        
 class BookDetailSerilizer(serializers.ModelSerializer):
     # full descriptions book
+    reviews = CommetCreateSerializer(many=True)
+    
     class Meta:
         model = Books
         exclude = ('draft', )
