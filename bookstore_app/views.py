@@ -100,3 +100,8 @@ class BookApiView(MixinApi, generics.ListAPIView):
 class BookDetailApiView(MixinApi, generics.RetrieveAPIView):
     # full description book    
     serializer_class = BookDetailSerilizer
+    
+    
+class CommentApiView(MixinApi, generics.CreateAPIView):
+    # Output comments
+    serializer_class = CommetCreateSerializer

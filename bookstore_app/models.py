@@ -81,7 +81,11 @@ class Reviews(models.Model):
     parent = models.ForeignKey(
         'self', verbose_name='Родитель', on_delete=models.SET_NULL, blank=True, null=True
     )
-    book = models.ForeignKey(Books, verbose_name='Книги', on_delete=models.CASCADE)
+    book = models.ForeignKey(Books, 
+                            verbose_name='Книги', 
+                            on_delete=models.CASCADE,
+                            related_name='reviews'
+                            )
 
     def __str__(self):
         return f'{self.name} - {self.book}'
