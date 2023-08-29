@@ -16,7 +16,11 @@ urlpatterns = [
     path('payment/', include('payment.urls', namespace='payment')),
     path('callback/', include('callback.urls', namespace='callback')),
     path('', include('bookstore_app.urls')),
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.authtoken')),
+    path('auth/', include('djoser.urls.jwt')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
 
 if settings.DEBUG:
     urlpatterns.append(path('static/<path:path>', never_cache(serve)))

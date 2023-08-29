@@ -6,8 +6,9 @@ from .forms import *
 from cart.forms import CartAddBookForm
 
 from rest_framework.response import Response
-from rest_framework import generics
+from rest_framework import generics, permissions
 from .serializer import *
+from .servise import PageNumberPagination
 
 
 class Mixin():
@@ -90,8 +91,10 @@ class MixinApi():
     # class mixin
     serializers_class = None
     queryset = Books.objects.filter(draft=False)
+    pagination_class = PageNumberPagination
+    permission_classes = [permissions.IsAuthenticated]
+
                
-        
 class BookApiView(MixinApi, generics.ListAPIView):
     # Book list output
     serializer_class = BookListSerializer
