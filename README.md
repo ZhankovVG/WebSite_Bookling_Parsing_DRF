@@ -21,3 +21,6 @@ In this project I am repeating and copying the Bookling bookstore website. I wil
 12. Payment books
 13. Order a call back(I did it through the database.)
 14. Session setup
+15. Asynchrony using celery
+16. Smtp
+17. Added REDIS
